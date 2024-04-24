@@ -19,15 +19,9 @@ Producto *Productos;//El tamaño de este arreglo depende de la variable
 // “CantidadProductosAPedir”
 }typedef Cliente;
 
-int main(){
-    Cliente *comprador;
-    int cantCliente;
-    printf("\nIngrese la cantidad de clientes: ");
-    scanf("%d",&cantCliente);
-    fflush(stdin);
-    comprador=(Cliente *)malloc(cantCliente* sizeof(Cliente));
-
-    printf("\nIngrese el id de cada cliente: ");
+void cargarCliente(Cliente *comprador,int cantCliente);
+void cargarCliente(Cliente *comprador,int cantCliente){
+     printf("\nIngrese el id de cada cliente: ");
     for (int i = 0; i < cantCliente; i++)
     {
         comprador[i].ClienteID=i+1;
@@ -36,13 +30,24 @@ int main(){
         gets(comprador[i].NombreCliente);
         fflush(stdin);
     }
+}
 
-    for (int i = 0; i < cantCliente; i++)
+void mostrarCliente(Cliente *comprador,int cantCliente);
+void mostrarCliente(Cliente *comprador,int cantCliente){
+      for (int i = 0; i < cantCliente; i++)
     {
         printf("\nNombre del cliente %d: %s",comprador[i].ClienteID,comprador[i].NombreCliente);
     }
+}
 
-    
-
+int main(){
+    Cliente *comprador;
+    int cantCliente;
+    printf("\nIngrese la cantidad de clientes: ");
+    scanf("%d",&cantCliente);
+    fflush(stdin);
+    comprador=(Cliente *)malloc(cantCliente* sizeof(Cliente));
+    cargarCliente(comprador,cantCliente);
+    mostrarCliente(comprador,cantCliente);
     return 0;
 }
